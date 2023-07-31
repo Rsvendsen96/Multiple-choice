@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ test_name }}</title>
+</head>
+<body>
+    <h1>{{ test_name }}</h1>
+
+    {% if remaining_time %}
+        <h2>Remaining Time: {{ remaining_time }}</h2>
+    {% else %}
+        <h2>Time's Up!</h2>
+        <form method="POST" action="/result/{{ username }}">
+            <input type="hidden" name="username" value="{{ username }}">
+            <button type="submit">Show Result</button>
+        </form>
+    {% endif %}
+
+    <form method="POST" action="/student/{{ username }}/take_test/{{ test_name }}">
+        {% for i, question in enumerate(questions) %}
+            <h3>Question {{ i+1 }} - {{ question.question }}</h3>
+            {% if question.question_type == "multiple_choice" %}
+                <select name="answer_{{ i }}" required>
+                    {% for choice in question.choices %}
+                        <option value="{{ choice }}">{{ choice }}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input type="text" name="answer_{{ i }}" required>
+            {% endif %}
+            <br><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Back to Tests</h2>
+    <a href="/student/{{ username }}/tests">Back</a>
+</body>
+</html>

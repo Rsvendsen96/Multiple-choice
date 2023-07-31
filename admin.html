@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Welcome, Admin!</h1>
+    <h2>Availeble tests</h2>
+    <ul>
+        {% for test in tests %}
+            <li><a href="/admin/{{ test.test_name }}">{{ test.test_name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Create User</h2>
+    <form method="POST" action="/admin">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" name="action" value="create_user">Create User</button>
+    </form>
+
+    <h2>Create Test</h2>
+    <form method="POST" action="/admin">
+        <input type="text" name="test_name" placeholder="Test Name" required>
+        <input type="number" name="duration_minutes" placeholder="Duration in minutes" required
+        <input type="number" name="num_choices" placeholder="Number of choices for multiple choice questions" required>
+        <button type="submit" name="action" value="create_test">Create Test</button>
+
+    <h2>Set Passing Percentage</h2>
+    <form method="POST" action="/admin">
+        <input type="number" name="passing_percentage" placeholder="Passing Percentage" required>
+        <input type="number" name="total_points_for_test" placeholder="Total Points for Test" required>
+        <button type="submit" name="action" value="set_passing_percentage">Set Passing Percentage</button>
+    </form>
+
+    <h2>Logout</h2>
+    <form method="POST" action="/">
+        <input type="hidden" name="username" value="admin">
+        <input type="hidden" name="password" value="adminpass">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

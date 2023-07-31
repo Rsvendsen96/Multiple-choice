@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ test.test_name }}</title>
+</head>
+<body>
+    <h1>{{ test.test_name }}</h1>
+
+    <h2>Add Question</h2>
+    <form method="POST" action="/admin/{{ test.test_name }}">
+        <input type="text" name="question" placeholder="Question" required>
+        <input type="text" name="answer" placeholder="Answer" required>
+        <select name="question_type" required>
+            <option value="multiple_choice">Multiple Choice</option>
+            <option value="short_answer">Short Answer</option>
+        </select>
+        <input type="number" name="points" placeholder="Points" required>
+        {% if test.num_choices > 0 %}
+            {% for i in range(1, test.num_choices + 1) %}
+                <input type="text" name="choice_{{ i }}" placeholder="Choice {{ i }}" required>
+            {% endfor %}
+        {% endif %}
+        <button type="submit" name="action" value="add_question">Add Question</button>
+    </form>
+
+    <h2>Questions</h2>
+    <ul>
+        {% for question in test.questions %}
+            <li>{{ question.question }} - Points: {{ question.points }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Back to Admin Page</h2>
+    <a href="/admin">Back</a>
+</body>
+</html>

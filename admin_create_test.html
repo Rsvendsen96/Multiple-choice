@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Test</title>
+</head>
+<body>
+    <h1>Create New Test</h1>
+    <form method="POST" action="/admin">
+        <label for="test_name">Test Name:</label>
+        <input type="text" id="test_name" name="test_name" required><br>
+        <label for="duration_minutes">Duration (minutes):</label>
+        <input type="number" id="duration_minutes" name="duration_minutes" required><br>
+        <label for="num_choices">Number of Choices for Multiple Choice Questions:</label>
+        <input type="number" id="num_choices" name="num_choices" required><br>
+        <input type="submit" value="Create">
+    </form>
+    <a href="/admin_tests">Back to Tests</a>
+</body>
+</html>

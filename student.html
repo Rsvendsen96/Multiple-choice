@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ test.test_name }} - Student</title>
+</head>
+<body>
+    <h1>{{ test.test_name }} - Student</h1>
+
+    <h2>Questions</h2>
+    <form method="post">
+        {% for i, question in enumerate(test.questions) %}
+            <p>{{ question.question }} ({{ question.points }} points)</p>
+            {% if question.question_type == "multiple_choice" %}
+                <ul>
+                    {% for choice in question.choices %}
+                        <li>
+                            <input type="radio" name="answer_{{ i }}" value="{{ choice }}">
+                            {{ choice }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <input type="text" name="answer_{{ i }}" required><br>
+            {% endif %}
+        {% endfor %}
+        <button type="submit">Submit Answers</button>
+    </form>
+
+    <h2>Results</h2>
+    <p>Total Points: {{ test.total_points }} / {{ total_points_for_test }}</p>
+    <p>Passing Percentage: {{ passing_percentage }}%</p>
+    {% if (test.total_points / total_points_for_test) * 100 >= passing_percentage %}
+        <p>Congratulations! You passed the test.</p>
+    {% else %}
+        <p>Sorry, you did not pass the test.</p>
+    {% endif %}
+
+    <h2>Available Tests</h2>
+    <ul>
+        {% for test in student.tests %}
+            <li><a href="/student/{{ test.test_name }}">{{ test.test_name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Question</title>
+</head>
+<body>
+    <h1>Add Question to {{ test_name }}</h1>
+    <form method="POST" action="/admin/{{ test_name }}">
+        <label for="question">Question:</label>
+        <textarea id="question" name="question" required></textarea><br>
+        <label for="answer">Answer:</label>
+        <input type="text" id="answer" name="answer" required><br>
+        <label for="question_type">Question Type:</label>
+        <select id="question_type" name="question_type">
+            <option value="multiple_choice">Multiple Choice</option>
+            <option value="short_answer">Short Answer</option>
+        </select><br>
+        <label for="points">Points:</label>
+        <input type="number" id="points" name="points" required><br>
+        <div id="multiple_choice_options">
+            <label for="choice_1">Choice 1:</label>
+            <input type="text" id="choice_1" name="choice" required><br>
+        </div>
+        <button type="button" onclick="addChoice()">Add Another Choice</button><br>
+        <input type="submit" value="Add">
+    </form>
+    <a href="/admin/{{ test_name }}">Back to Test</a>
+
+    <script>
+        let numChoices = 1;
+
+        function addChoice() {
+            numChoices++;
+            const div = document.getElementById("multiple_choice_options");
+            const label = document.createElement("label");
+            label.setAttribute("for", `choice_${numChoices}`);
+            label.textContent = `Choice ${numChoices}:`;
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("id", `choice_${numChoices}`);
+            input.setAttribute("name", "choice");
+            input.setAttribute("required", "");
+            div.appendChild(label);
+            div.appendChild(input);
+            div.appendChild(document.createElement("br"));
+        }
+    </script>
+</body>
+</html>

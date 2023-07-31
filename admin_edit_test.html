@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Test - {{ test.test_name }}</title>
+</head>
+<body>
+    <h1>Edit Test - {{ test.test_name }}</h1>
+    <form action="/admin/edit_test/{{ test.test_name }}" method="post">
+        <input type="hidden" name="action" value="add_question">
+        <label for="question">Question:</label><br>
+        <textarea id="question" name="question" required></textarea><br>
+        <label for="answer">Answer:</label><br>
+        <input type="text" id="answer" name="answer" required><br>
+        <label for="question_type">Question Type:</label><br>
+        <select id="question_type" name="question_type" required>
+            <option value="text">Text</option>
+            <option value="multiple_choice">Multiple Choice</option>
+        </select><br>
+        <label for="points">Points:</label><br>
+        <input type="number" id="points" name="points" required><br>
+        <div id="choices">
+            <!-- Add inputs for multiple choice options here using JavaScript (optional) -->
+        </div>
+        <button type="submit">Add Question</button>
+    </form>
+    <a href="/admin">Back to Admin Dashboard</a>
+</body>
+</html>

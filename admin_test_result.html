@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Result</title>
+</head>
+<body>
+    <h1>Test Result for {{ test_name }}</h1>
+    <p>Total Points: {{ total_points }}</p>
+    <p>Percentage: {{ percentage }}%</p>
+    <p>Status: {% if is_passed %}Passed{% else %}Failed{% endif %}</p>
+    <h2>Questions and Answers:</h2>
+    <ul>
+        {% for question, answer in questions_answers.items() %}
+        <li>
+            <p><strong>Question:</strong> {{ question }}</p>
+            <p><strong>Answer:</strong> {{ answer }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/admin_tests">Back to Tests</a>
+</body>
+</html>

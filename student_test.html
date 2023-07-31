@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Page</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}!</h1>
+    <h2>Availeble tests</h2>
+    <ul>
+        {% for test in tests %}
+            <li><a href="/student/{{ username }}/take_test/{{ test.test_name }}">{{ test.test_name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Logout</h2>
+    <form method="POST" action="/">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="password" value="{{ students[username] }}">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

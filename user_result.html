@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ test_name }} Result</title>
+</head>
+<body>
+    <h1>{{ test_name }} Result</h1>
+    <h2>Total Points: {{ total_points }}</h2>
+    <h2>Percentage: {{ percentage }}%</h2>
+    {% if is_passed %}
+        <h2>Congratulations! You Passed!</h2>
+    {% else %}
+        <h2>Sorry! You Failed!</h2>
+    {% endif %}
+
+    <h2>Questions and Answers:</h2>
+    <ul>
+        {% for i, question in enumerate(questions_answers) %}
+            <li>Question {{ i+1 }}: {{ question.question }} - Your Answer: {{ question.answer }} - Points Earned: {{ question.points if i in test.questions_points else 0 }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Back to Tests</h2>
+    <a href="/student/{{ test_name }}/tests">Back</a>
+</body>
+</html>

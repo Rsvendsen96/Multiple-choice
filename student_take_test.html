@@ -1,0 +1,24 @@
+<!-- student_result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Result</title>
+</head>
+<body>
+    <h1>Test Result for {{ test_name }}</h1>
+    <h2>Total Points: {{ total_points }}</h2>
+    <h2>Percentage: {{ percentage }}%</h2>
+    <h2>Passed: {% if is_passed %}Yes{% else %}No{% endif %}</h2>
+
+    <h2>Questions and Answers:</h2>
+    <ul>
+        {% for i, question in enumerate(questions_answers) %}
+        <li>
+            <p>Question: {{ question.question }}</p>
+            <p>Answer: {{ question.answer }}</p>
+            <p>Points: {{ question.points }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
